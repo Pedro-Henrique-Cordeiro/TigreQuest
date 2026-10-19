@@ -1,0 +1,12 @@
+# Ignorar arquivos de configuração do Eclipse
+.metadata/
+.classpath
+.project
+.settings/
+bin/
+
+# Ignorar arquivos de configuração do VS Code
+.vscode/
+
+# Ignorar arquivos temporários e compilação do Java
+*.class
