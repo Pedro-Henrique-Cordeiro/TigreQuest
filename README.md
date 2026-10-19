@@ -7,7 +7,6 @@ Super classe Itens{
 *terá um atributo que contabiliza o número de itens disponíveis para empréstimo.
 
 Super classe Bolas
-Subclasses:
 -Bola_futsal
 -Bola_volei
 -Bola_basquete
