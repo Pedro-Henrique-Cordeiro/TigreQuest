@@ -5,6 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+
 //super classe Pessoa, serve como molde para as subclasses: Aluno e Servidor
 abstract class Pessoa{
 
@@ -13,7 +20,7 @@ abstract class Pessoa{
     //nome para ajudar no histórico de recibos
     private String nome;
     //recebe "recibo" dos empréstimos
-    protected List<Emprestimo> historico_emprestimo = new ArrayList<>();
+    protected List<Emprestimo> historico_emprestimo = new ArrayList<>();//emprestimpo
     //booleana para saber se a pessoa está bloaqueada ou não(proporcionalmente)
     private boolean bloqueio;
     
@@ -35,7 +42,7 @@ abstract class Pessoa{
 
     public List<Emprestimo> getHistorico_emprestimo() {
         return historico_emprestimo;
-    }
+    }//
 
     public boolean isBloqueio() {
         return bloqueio;
@@ -70,7 +77,7 @@ abstract class Pessoa{
     //função que cria um novo recibo de empréstimo
     public void emprestar(Emprestimo novo_emprestimo){
         //verifica se a pessoa está bloqueada
-        if(this.bloqueio == true){
+        if(this.bloqueio == true){//pessoa
             throw new IllegalStateException("\nErro, pessoa bloqueada\n");
         }
 
@@ -81,6 +88,8 @@ abstract class Pessoa{
 
         //autocomplete n ta 
         this.historico_emprestimo.add(novo_emprestimo);    
+     // Retorna o nome da pessoa ao invés da referência de memória
+       
     }
 
 }
@@ -122,6 +131,8 @@ class Emprestimo{
     private Pessoa nome;
     //nome do item pego
     private String nome_item;
+    
+    private Item item;
 
 //construtor
     public Emprestimo(Pessoa nome, String nome_item) {
@@ -137,5 +148,42 @@ class Emprestimo{
     public String getNome_item() {
         return nome_item;
     }
+    
+    public String fichaRecibo() {
+    	return getNome() + " Emprestou " + getNome_item();
+    }
 
+ // 1. Função que recebe um Emprestimo (ou a ficha), salva em um arquivo TXT
+    public static void salvarFicha(Emprestimo emprestimo, String caminhoArquivo) {
+        // Usamos true no FileWriter para fazer o append (adicionar novas fichas sem apagar as antigas)
+        try (BufferedWriter escritor = new BufferedWriter(new FileWriter(caminhoArquivo, true))) {
+            escritor.write(emprestimo.fichaRecibo());
+            escritor.newLine(); // Pula uma linha para o próximo registro
+            System.out.println("Ficha salva com sucesso no arquivo!");
+        } catch (IOException e) {
+            System.err.println("Erro ao salvar o arquivo: " + e.getMessage());
+        }
+    }
+    
+    public static String lerFichas(String caminhoArquivo) {
+        StringBuilder conteudo = new StringBuilder();
+
+        try (BufferedReader leitor = new BufferedReader(new FileReader(caminhoArquivo))) {
+            String linha;
+            while ((linha = leitor.readLine()) != null) {
+                // Aqui você pode formatar a string de retorno conforme desejado
+                conteudo.append(linha).append("\n");
+            }
+        } catch (IOException e) {
+            System.err.println("Erro ao ler o arquivo: " + e.getMessage());
+        }
+
+        return conteudo.toString();
+    }
+    
 }
+
+
+	
+	
+
