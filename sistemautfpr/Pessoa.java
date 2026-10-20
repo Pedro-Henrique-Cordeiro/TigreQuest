@@ -1,164 +1,98 @@
 package sistemautfpr;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-
-//super classe Pessoa, serve como molde para as subclasses: Aluno e Servidor
-abstract class Pessoa{
-
-    //cpf para identificação da pessoa
+// Super classe Pessoa
+abstract class Pessoa {
     private String cpf;
-    //nome para ajudar no histórico de recibos
     private String nome;
-    //recebe "recibo" dos empréstimos
-    protected List<Emprestimo> historico_emprestimo = new ArrayList<>();//emprestimpo
-    //booleana para saber se a pessoa está bloaqueada ou não(proporcionalmente)
+    protected List<Emprestimo> historico_emprestimo = new ArrayList<>();
     private boolean bloqueio;
-    
-//construtor
+
     public Pessoa(boolean bloqueio, String cpf, String nome) {
         this.bloqueio = bloqueio;
         this.setCpf(cpf);
         this.nome = nome;
     }
 
-//getters
-    public String getCpf() {
-        return cpf;
-    }
+    public String getCpf() { return cpf; }
+    public String getNome() { return nome; }
+    public List<Emprestimo> getHistorico_emprestimo() { return historico_emprestimo; }
+    public boolean isBloqueio() { return bloqueio; }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public List<Emprestimo> getHistorico_emprestimo() {
-        return historico_emprestimo;
-    }//
-
-    public boolean isBloqueio() {
-        return bloqueio;
-    }
-
-//setters
-
-    //encapsulamento
-    //CPF aceita apenas 14 dígitos
     public void setCpf(String cpf) {
-        if(cpf.length() < 14 || cpf.length() > 14){
+        if (cpf.length() != 14) {
             throw new IllegalArgumentException("\nErro no CPF\n");
-        }else{
-            this.cpf = cpf;
         }
+        this.cpf = cpf;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    public void setNome(String nome) { this.nome = nome; }
+    public void setBloqueio(boolean bloqueio) { this.bloqueio = bloqueio; }
 
-    public void setBloqueio(boolean bloqueio) {
-        this.bloqueio = bloqueio;
-    }
-
-    //setHistorico_empresstimo não esta pq ngm pode modificar o histórico, só exibir
-
-    //função que as subclasses usaram para modificar o máximo de itens que cada
-    //uma pode receber
     public abstract int limite_itens();
 
-    //função que cria um novo recibo de empréstimo
-    public void emprestar(Emprestimo novo_emprestimo){
-        //verifica se a pessoa está bloqueada
-        if(this.bloqueio == true){//pessoa
+    public void emprestar(Emprestimo novo_emprestimo) {
+        if (this.bloqueio) {
             throw new IllegalStateException("\nErro, pessoa bloqueada\n");
         }
-
-        //verifica se ela já atingiu o máximo de itens
-        if(this.historico_emprestimo.size() >= this.limite_itens()){
+        if (this.historico_emprestimo.size() >= this.limite_itens()) {
             throw new IllegalStateException("\nErro, pessoa já tem maximo de itens\n");
         }
-
-        //autocomplete n ta 
         this.historico_emprestimo.add(novo_emprestimo);    
-     // Retorna o nome da pessoa ao invés da referência de memória
-       
     }
 
+    // Essencial para o recibo imprimir o nome em vez de caracteres estranhos
+    @Override
+    public String toString() {
+        return this.nome;
+    }
 }
 
-//subclasse Aluno
-class Aluno extends Pessoa{
-
-//construtor
-    public Aluno(boolean bloqueio, String cpf, String nome){
+class Aluno extends Pessoa {
+    public Aluno(boolean bloqueio, String cpf, String nome) {
         super(bloqueio, cpf, nome);
     }
 
-//limite de itens individual de aluno
-    public int limite_itens(){
-        return 2;
-    }
-
+    @Override
+    public int limite_itens() { return 2; }
 }
 
-//subclasse Servidor
-class Servidor extends Pessoa{
-
-//construtor
-    public Servidor(boolean bloqueio, String cpf, String nome){
+class Servidor extends Pessoa {
+    public Servidor(boolean bloqueio, String cpf, String nome) {
         super(bloqueio, cpf, nome);
     }
 
-//limite de itens individual de servidor
-    public int limite_itens(){
-        return 4;
-    }
-
+    @Override
+    public int limite_itens() { return 4; }
 }
 
-//classe dos recibos dos empréstimos
-class Emprestimo{
-
-    //nome da pessoa que irá pegar um item
+class Emprestimo {
     private Pessoa nome;
-    //nome do item pego
     private String nome_item;
-    
-    private Item item;
 
-//construtor
     public Emprestimo(Pessoa nome, String nome_item) {
         this.nome = nome;
         this.nome_item = nome_item;
     }
 
-//getters (apenas para ler o recibo)
-    public Pessoa getNome() {
-        return nome;
-    }
-
-    public String getNome_item() {
-        return nome_item;
-    }
+    public Pessoa getNome() { return nome; }
+    public String getNome_item() { return nome_item; }
     
     public String fichaRecibo() {
-    	return getNome() + " Emprestou " + getNome_item();
+        return getNome() + " Emprestou " + getNome_item();
     }
 
- // 1. Função que recebe um Emprestimo (ou a ficha), salva em um arquivo TXT
     public static void salvarFicha(Emprestimo emprestimo, String caminhoArquivo) {
-        // Usamos true no FileWriter para fazer o append (adicionar novas fichas sem apagar as antigas)
         try (BufferedWriter escritor = new BufferedWriter(new FileWriter(caminhoArquivo, true))) {
             escritor.write(emprestimo.fichaRecibo());
-            escritor.newLine(); // Pula uma linha para o próximo registro
+            escritor.newLine();
             System.out.println("Ficha salva com sucesso no arquivo!");
         } catch (IOException e) {
             System.err.println("Erro ao salvar o arquivo: " + e.getMessage());
@@ -167,23 +101,14 @@ class Emprestimo{
     
     public static String lerFichas(String caminhoArquivo) {
         StringBuilder conteudo = new StringBuilder();
-
         try (BufferedReader leitor = new BufferedReader(new FileReader(caminhoArquivo))) {
             String linha;
             while ((linha = leitor.readLine()) != null) {
-                // Aqui você pode formatar a string de retorno conforme desejado
                 conteudo.append(linha).append("\n");
             }
         } catch (IOException e) {
             System.err.println("Erro ao ler o arquivo: " + e.getMessage());
         }
-
         return conteudo.toString();
     }
-    
 }
-
-
-	
-	
-
