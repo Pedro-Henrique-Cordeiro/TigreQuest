@@ -64,6 +64,22 @@ public abstract class Item{
 			}
 			return false;
 		}//disponivel
+		
+		public boolean pegaEstoque(int numRetirado) {
+			if(disponivel(numRetirado)) {
+				setNumItem(getNumItem()-numRetirado);
+				return true;
+			}
+			return false;	
+		}
+		
+		public boolean pegaEstoque() {
+			return pegaEstoque(1);	
+		}
+		
+		public void guardaEstoque(int numItens) {
+			setNumItem(getNumItem() + numItens);
+		}
 			
 	}
 
