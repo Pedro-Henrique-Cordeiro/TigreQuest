@@ -5,17 +5,24 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.*;
 
 public class Emprestimo {
     private Item item;
     private Pessoa pessoa;
     private int quantidade;
+    private LocalDate dataInicia;
+    private LocalDate dataFinal;
 
     public Emprestimo(Item item, Pessoa pessoa, int quantidade) {
         this.item = item;
         this.pessoa = pessoa;
         this.quantidade = quantidade;
-    }
+        
+        this.dataInicia = LocalDate.now();
+        
+        this.dataFinal = dataInicia.plusDays(item.getPrazoEmprestimo());
+        }
 
     // Valida e realiza o empréstimo direto na classe
     public boolean realizarEmprestimo() {
