@@ -1,0 +1,92 @@
+[33mcommit 92976b5352a4b429d8f14a6f43e7f783d87eb0b4[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mSeijiBranch[m[33m)[m
+Author: Pedro Cordeiro <pedrocordeiro0276@gmail.com>
+Date:   Tue Oct 20 20:10:40 2026 -0300
+
+    ta funcionando o historico
+
+[33mcommit 93048e96a1b0dc00453f55c44223108486626f71[m[33m ([m[1;31morigin/SeijiBranch[m[33m)[m
+Author: Pedro Cordeiro <pedrocordeiro0276@gmail.com>
+Date:   Tue Oct 20 19:33:35 2026 -0300
+
+    ODEIO JAVA
+
+[33mcommit eb3f794984ade5a6fcd07d273d352ea473b075f3[m
+Author: NyneC <eduardo.sugawara23@gmail.com>
+Date:   Mon Oct 19 22:56:16 2026 -0300
+
+    Terminei a classe Pessoas e seus encapsulamentos.
+    Criação da classe Empréstimo para fazer o histórico com os recibos.
+
+[33mcommit e24e18e6ace94f1c4c535382dd8dde16b7c7a9e8[m[33m ([m[1;32mmain[m[33m)[m
+Author: Pedro Cordeiro <pedrocordeiro0276@gmail.com>
+Date:   Mon Oct 19 14:43:24 2026 -0300
+
+    terminei as classes de itens junto com o encapsulamento de cada classe
+
+[33mcommit 198489fd61d5baa287fbd5556b5b8ad518613133[m
+Author: NyneC <eduardo.sugawara23@gmail.com>
+Date:   Mon Oct 19 13:20:51 2026 -0300
+
+    De volta ao começo
+
+[33mcommit 7f34da6c3a9e9e531be11be6f83b7de3a56b554f[m
+Merge: 4327d97 cb1fab9
+Author: NyneC <eduardo.sugawara23@gmail.com>
+Date:   Mon Oct 19 13:15:54 2026 -0300
+
+    Merge remote-tracking branch 'origin/main' into SeijiBranch
+
+[33mcommit 4327d978646d3e1e851b05d701ace65407a930d1[m
+Author: NyneC <eduardo.sugawara23@gmail.com>
+Date:   Mon Oct 19 13:03:48 2026 -0300
+
+    se perdemo nas branch
+
+[33mcommit cb1fab96a4305c21ae1aa1a37e9bb0b34012914c[m[33m ([m[1;31morigin/Main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Pedro Cordeiro <pedrocordeiro0276@gmail.com>
+Date:   Mon Oct 19 12:50:38 2026 -0300
+
+    teste
+
+[33mcommit ee0a8574a728dd693ab5347391baf5c5de413437[m[33m ([m[1;32mPedrobranch[m[33m)[m
+Author: Pedro Cordeiro <pedrocordeiro0276@gmail.com>
+Date:   Sun Oct 18 20:41:10 2026 -0300
+
+    Classes abstratas puts mandei sem salvar kkkkkk, esses estagiarios
+
+[33mcommit 69599ed8acdc48c8abe9657fa03207d7a90fe7ac[m
+Merge: c501f9a 3435764
+Author: Pedro Cordeiro <pedrocordeiro0276@gmail.com>
+Date:   Sun Oct 18 20:31:02 2026 -0300
+
+    Merge branch 'main' of https://github.com/Pedro-Henrique-Cordeiro/TigreQuest
+
+[33mcommit c501f9a21d272ac8fc967a4afdcbea2fdba89c45[m
+Author: Pedro Cordeiro <pedrocordeiro0276@gmail.com>
+Date:   Sun Oct 18 20:28:39 2026 -0300
+
+    Classes abstratas feitas, esboço do que tera nas funções e construtores da classe abstrata
+
+[33mcommit 3435764ff71d03499b567bb772d18220a3e65fa2[m
+Author: NyneC <eduardo.sugawara23@gmail.com>
+Date:   Fri Oct 16 14:39:32 2026 -0300
+
+    Acabamos o PDF
+
+[33mcommit 317b5c5fff9fbf4a13843a71301a612cd3e88f76[m
+Author: NyneC <eduardo.sugawara23@gmail.com>
+Date:   Fri Oct 16 14:07:02 2026 -0300
+
+    Comecei a definir as classes
+
+[33mcommit 20b389be734d0123f57379123dfd34d173e685e3[m
+Author: NyneC <eduardo.sugawara23@gmail.com>
+Date:   Fri Oct 16 13:51:34 2026 -0300
+
+    Inicialização do Git: primeiro commit
+
+[33mcommit 741795d5af8c158e633b6c7f7e23e0eff15e51ce[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Pedro Cordeiro <pedrocordeiro0276@gmail.com>
+Date:   Fri Oct 16 13:20:36 2026 -0300
+
+    Initial commit
